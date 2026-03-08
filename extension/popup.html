@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+      font-family: sans-serif;
+    }
+    h3 { margin-top: 0; color: #1a73e8; }
+    .section { margin-bottom: 15px; }
+    .label { font-weight: bold; font-size: 0.9em; color: #555; }
+    .content { margin-top: 5px; font-size: 1em; }
+    .vocab-item { border-bottom: 1px solid #eee; padding: 5px 0; }
+    .vocab-word { color: #d93025; font-weight: bold; }
+    .grammar-item { margin-bottom: 10px; }
+    .grammar-pattern { font-weight: bold; color: #188038; }
+    .footer { font-size: 0.8em; color: #888; text-align: center; }
+  </style>
+</head>
+<body>
+  <h3>Sentence Analysis</h3>
+  <div id="results">
+    <div class="section">
+      <div class="label">Sentence:</div>
+      <div id="sentence" class="content">Select text and right-click to analyze.</div>
+    </div>
+    
+    <div class="section">
+      <div class="label">Vocabulary:</div>
+      <div id="vocabulary" class="content"></div>
+    </div>
+
+    <div class="section">
+      <div class="label">Grammar:</div>
+      <div id="grammar" class="content"></div>
+    </div>
+  </div>
+  <div class="footer">Tracking-Voca v1.0</div>
+  <script src="popup.js"></script>
+</body>
+</html>

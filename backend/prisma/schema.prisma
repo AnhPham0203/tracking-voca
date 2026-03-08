@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id             String           @id @default(uuid())
+  email          String           @unique
+  createdAt      DateTime         @default(now())
+  userVocabulary UserVocabulary[]
+}
+
+model Sentence {
+  id        String   @id @default(uuid())
+  content   String
+  source    String
+  createdAt DateTime @default(now())
+}
+
+model Vocabulary {
+  id             String           @id @default(uuid())
+  word           String           @unique
+  meaning        String
+  partOfSpeech   String
+  example        String?
+  createdAt      DateTime         @default(now())
+  userVocabulary UserVocabulary[]
+}
+
+model Grammar {
+  id          String @id @default(uuid())
+  pattern     String
+  explanation String
+  example     String
+}
+
+model UserVocabulary {
+  id           String     @id @default(uuid())
+  userId       String
+  wordId       String
+  easeFactor   Float      @default(2.5)
+  interval     Int        @default(0)
+  repetition   Int        @default(0)
+  nextReview   DateTime   @default(now())
+  user         User       @relation(fields: [userId], references: [id])
+  vocabulary   Vocabulary @relation(fields: [wordId], references: [id])
+
+  @@unique([userId, wordId])
+}
